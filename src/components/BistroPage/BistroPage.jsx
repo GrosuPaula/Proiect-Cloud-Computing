@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import { Button, TextField } from '@material-ui/core';
 import MealCard from '../MealCard/MealCard';
 import { database } from '../../firebase';
 import firebase from "firebase/app"
@@ -27,7 +25,7 @@ export const BistroPage = ({currentUserId}) => {
     useEffect(() => {
         getMeals();
         getDrinks();
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const [cocktails, setCocktails] = useState([]);
     const [meals, setMeals] = useState([]);

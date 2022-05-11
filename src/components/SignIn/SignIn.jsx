@@ -63,7 +63,7 @@ const classes = useStyles();
         </Typography>
             <div onClick={() => authenticateUser()} className="google-btn">
                 <div className="google-icon-wrapper">
-                    <img className="google-icon-svg" src={process.env.PUBLIC_URL + "/logoGoogle.svg"}/>
+                    <img className="google-icon-svg" src={process.env.PUBLIC_URL + "/logoGoogle.svg"} alt="google icon"/>
                 </div>
                 <p className="btn-text"><b>Sign in with Google</b></p>
             </div>
