@@ -1,7 +1,7 @@
 import React from 'react';
 import "./SignIn.css";
 import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
- import { auth, database, googleProvider } from '../../firebase';
+import { auth, database, googleProvider } from '../../firebase';
 
 const useStyles = makeStyles({
     root: {
@@ -56,10 +56,10 @@ const classes = useStyles();
         <Card className={classes.root}>
         <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Log in to continue to
+            Log in to continue to your own
         </Typography>
         <Typography variant="h5" component="h2">
-            My own bistro!
+            Kitchen Guide
         </Typography>
             <div onClick={() => authenticateUser()} className="google-btn">
                 <div className="google-icon-wrapper">

@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MealCard({ meal, addToBistro, removeFromBistro}) {
+export default function MealCard({ meal, addToGuide, removeFromGuide}) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
 
  const addToFavorites = () => {
-     openSnackBar('Image added to favorites');
+     openSnackBar('Meal added to guide');
      let mealToSave = {
          idMeal: meal.idMeal,
          strMeal: meal.strMeal,
@@ -36,12 +36,12 @@ export default function MealCard({ meal, addToBistro, removeFromBistro}) {
          strYoutube: meal.strYoutube
      }
 
-     addToBistro(mealToSave);
+     addToGuide(mealToSave);
   }
 
   const removeFromFavorites = () => {
-    openSnackBar('Image removed from favorites');
-    removeFromBistro(meal);
+    openSnackBar('Meal removed from guide');
+    removeFromGuide(meal);
  }
 
   const openSnackBar = (message) => {
@@ -64,7 +64,7 @@ export default function MealCard({ meal, addToBistro, removeFromBistro}) {
     <Card className={classes.root}>
         <CardHeader action={ 
 
-          addToBistro ? 
+          addToGuide ? 
           ( <IconButton onClick={() => addToFavorites()} aria-label="add to favorites">
           <AddCircleOutlineIcon color="primary" />
           </IconButton>)

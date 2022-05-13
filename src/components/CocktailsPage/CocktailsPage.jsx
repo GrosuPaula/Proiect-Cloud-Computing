@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, TextField } from '@material-ui/core';
 import { database } from '../../firebase';
 import firebase from "firebase/app"
-import CocktailCard from '../CocktailCard/CoktailCard';
+import CocktailCard from '../CocktailCard/CocktailCard';
 
 const useStyles = makeStyles(() => ({
     input: { 
@@ -63,13 +63,13 @@ export const CocktailsPage = ({currentUserId}) => {
     if (cocktails) {
         displayedCocktails = cocktails.map((cocktail, index) => {
             return (
-                <CocktailCard addToBistro={addToFavorites} cocktail = {cocktail} key={index}></CocktailCard>
+                <CocktailCard addToGuide={addToFavorites} cocktail = {cocktail} key={index}></CocktailCard>
             )
         })
     }
     return (
         <div >
-            <h1>Get something to drink</h1>
+            <h1>Search for a drink to find out how to make it!</h1>
             <TextField className={classes.input} onChange={handleInputChange} id="standard-basic" label="Search for a drink" />
             <Button onClick={() => searchCocktails()} variant="contained" color="primary">
                 Search

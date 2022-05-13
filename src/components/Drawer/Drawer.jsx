@@ -44,8 +44,8 @@ export default function DrawerMenu({ toggleDrawer, isDrawerOpened, setPage }) {
             icon: <KitchenIcon color="primary"></KitchenIcon>
         },
         {
-            text: 'My bistro',
-            value: 'bistro',
+            text: 'Kitchen Guide',
+            value: 'guide',
             icon: <RestaurantMenuIcon color="primary"></RestaurantMenuIcon>
         }
   ]

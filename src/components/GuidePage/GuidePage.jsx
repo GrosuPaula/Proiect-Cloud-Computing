@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import MealCard from '../MealCard/MealCard';
 import { database } from '../../firebase';
 import firebase from "firebase/app"
-import CocktailCard from '../CocktailCard/CoktailCard';
+import CocktailCard from '../CocktailCard/CocktailCard';
+import MealCard from '../MealCard/MealCard';
 
 const useStyles = makeStyles(() => ({
     input: { 
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 
   }));
   
-export const BistroPage = ({currentUserId}) => {
+export const GuidePage = ({currentUserId}) => {
     
     useEffect(() => {
         getMeals();
@@ -83,7 +83,7 @@ export const BistroPage = ({currentUserId}) => {
     if (meals) {
         displayedMeals = meals.map((meal, index) => {
             return (
-                <MealCard removeFromBistro={removeMealFromFav} meal = {meal} key={index}></MealCard>
+                <MealCard removeFromGuide={removeMealFromFav} meal = {meal} key={index}></MealCard>
             )
         })
     }
@@ -92,20 +92,20 @@ export const BistroPage = ({currentUserId}) => {
     if (cocktails) {
         displayedCocktails = cocktails.map((cocktail, index) => {
             return (
-                <CocktailCard removeFromBistro={removeCocktailFromFav} cocktail = {cocktail} key={index}></CocktailCard>
+                <CocktailCard removeFromGuide={removeCocktailFromFav} cocktail = {cocktail} key={index}></CocktailCard>
             )
         })
     }
 
     return (
         <div >
-            <h1>This is your perfect Bistro </h1>
-            <h3>Your favorite meals</h3>
+            <h1>This is your personal Kitchen Guide </h1>
+            <h3>Your chosen meals</h3>
             <div className={classes.mealsContainer}>
                 {meals.length === 0 ? <p>No meals selected</p> : displayedMeals}
             </div>
 
-            <h3>Your favorite drinks</h3>
+            <h3>Your chosen drinks</h3>
             <div className={classes.mealsContainer}>
                 {cocktails.length === 0 ? <p>No drinks selected</p> : displayedCocktails}
             </div>

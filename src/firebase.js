@@ -4,12 +4,13 @@ import "firebase/firestore"
 
  
 const app = firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  apiKey: "AIzaSyAHQEAgnb5TXZLssX614Obz9DCkd6lZ9Pc",
+  authDomain: "my-kitchen-guide.firebaseapp.com",
+  projectId: "my-kitchen-guide",
+  storageBucket: "my-kitchen-guide.appspot.com",
+  messagingSenderId: "1048247673708",
+  appId: "1:1048247673708:web:32d5c79c48768a532c8949",
+  measurementId: "G-8CSWKML37H"
 });
 
 export const auth = app.auth();

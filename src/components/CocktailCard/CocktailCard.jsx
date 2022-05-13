@@ -23,14 +23,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function CocktailCard({ cocktail, addToBistro, removeFromBistro}) {
+export default function CocktailCard({ cocktail, addToGuide, removeFromGuide}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [isModalOpened, setOpenModal] = useState(false);
   const [message, setMessage] = React.useState('');
 
  const addToFavorites = () => {
-     openSnackBar('Image added to favorites');
+     openSnackBar('Drink added to guide');
      let cocktailToSave = {
          idDrink: cocktail.idDrink,
          strDrink: cocktail.strDrink,
@@ -38,12 +38,12 @@ export default function CocktailCard({ cocktail, addToBistro, removeFromBistro})
          strInstructions: cocktail.strInstructions
      }
 
-     addToBistro(cocktailToSave);
+     addToGuide(cocktailToSave);
   }
 
   const removeFromFavorites = () => {
-    openSnackBar('Image removed from favorites');
-    removeFromBistro(cocktail);
+    openSnackBar('Drink removed from guide');
+    removeFromGuide(cocktail);
  }
 
   const openSnackBar = (message) => {
@@ -68,7 +68,7 @@ export default function CocktailCard({ cocktail, addToBistro, removeFromBistro})
     <Card onClick={() => toggleModal()} className={classes.root}>
         <CardHeader action={ 
 
-                addToBistro ? 
+                addToGuide ? 
                     ( <IconButton onClick={() => addToFavorites()} aria-label="add to favorites">
                     <AddCircleOutlineIcon color="primary" />
                 </IconButton>)

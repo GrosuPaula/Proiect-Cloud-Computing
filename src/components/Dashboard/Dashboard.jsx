@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DrawerMenu from '../Drawer/Drawer'
 import { MealsPage } from '../MealsPage/MealsPage';
 import { CocktailsPage } from '../CocktailsPage/CocktailsPage';
-import { BistroPage } from '../BistroPage/BistroPage';
+import { GuidePage } from '../GuidePage/GuidePage';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   
 export const Dashboard = ({currentUserId, setCurrentUserId}) => {
 
-    const [currentPage, setCurrentPage] = useState('cocktails');
+    const [currentPage, setCurrentPage] = useState('guide');
     const [isDrawerOpened, setDrawerOpened] = useState(false);
 
     const toggleDrawer = () =>{
@@ -42,8 +42,8 @@ export const Dashboard = ({currentUserId, setCurrentUserId}) => {
         if (currentPage === 'meals') {
             renderedPage = <MealsPage currentUserId={currentUserId}/>
         }
-        if (currentPage === 'bistro') {
-            renderedPage = <BistroPage currentUserId={currentUserId}/>
+        if (currentPage === 'guide') {
+            renderedPage = <GuidePage currentUserId={currentUserId}/>
         }
     }
 
@@ -60,7 +60,7 @@ export const Dashboard = ({currentUserId, setCurrentUserId}) => {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-                My own bistro!
+                My Kitchen Guide!
             </Typography>
             <Button onClick={() => logOutUser()}color="inherit">Logout</Button>
             </Toolbar>

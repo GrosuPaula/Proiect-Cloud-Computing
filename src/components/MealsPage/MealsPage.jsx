@@ -61,13 +61,13 @@ export const MealsPage = ({currentUserId}) => {
     if (meals) {
         displayedMeals = meals.map((meal, index) => {
             return (
-                <MealCard addToBistro={addToFavorites} meal = {meal} key={index}></MealCard>
+                <MealCard addToGuide={addToFavorites} meal = {meal} key={index}></MealCard>
             )
         })
     }
     return (
         <div >
-            <h1>Search for a delicious meal!</h1>
+            <h1>Search for a meal to find out how to cook it!</h1>
             <TextField className={classes.input} onChange={handleInputChange} id="standard-basic" label="Search for a meal" />
             <Button onClick={() => searchMeals()} variant="contained" color="primary">
                 Search
