@@ -1,46 +1,74 @@
-# My own bistro
+# Kitchen Guide
 
 ## Introducere
-Aplicația **My own Bistro** este o aplicație de tip Single Page Application dezvoltată cu ajutorul librăriei React și are rolul de a găsi și salva rețete favorite de mâncare și cocktailuri. Pentru o interfață cât mai plăcută, am apelat și la librăria Material UI.
+Aplicația **Kitchen Guide** este o aplicație de tip Single Page Application dezvoltată cu ajutorul librăriei React și librăriei Material UI, pentru o interfață user friendly.
 
-## Descriere problemă
-Această aplicație vine în ajutorul utilizatorilor ce doresc să găsească rapid anumite feluri de mâncare sau băuturi. Aplicația a fost gândită să fie cât mai ușor de folosit, astfel utilizatorii vor avea nevoie doar de un cont de Google pentru autentificare, iar căutarea rețetelor se execută prin folosirea unui cuvânt cheie. 
+## Descriere
+Aplicația **Kitchen Guide** se adresează utilizatorilor care doresc să ajungă rapid la un ghid step by step pentru prepararea unui fel de mâncare sau a unei băuturi. Aplicația a fost gândită pentru a fi ușor de utilizat de catre end-user, astfel pentru autentificare este necesar doar un cont de Google, iar căutarea rețetelor se realizează pe baza unui cuvânt cheie. 
  
 ## Servicii Cloud
-Pentru funcționalitatea aplicației, a fost folosită platforma cloud Firebase, datorită usurinței de folosire a acesteia și documentația complexă pe care o oferă.
+Am ales pentru funcționalitatea aplicației utilizarea platformei Cloud Firebase, datorită ușurinței de folosire a acesteia și documentației complexe pe care o oferă.
 
 1. Firebase Authentication
-Acest serviciu pune la dispoziție autentificarea rapidă prin diferite servicii precum Facebook, Google, Github etc. De asemenea, poate oferi și persistența autentificării unui utilizator și poate oferi datele în timp real.
-![autentificare](https://user-images.githubusercontent.com/83305311/117572521-e7e80100-b0db-11eb-8078-ec100fed05f4.JPG)
+Serviciul cloud **Firebase Authentication** pune la dispoziție autentificarea rapidă prin diferite servicii precum Google sau Github și oferă persistența autentificării unui utilizator și prezentarea datelor în timp real.
+![authentication](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Authentication.png)
 
-2. Firebase Firestore 
-Acest serviciu este folosit pentru stocarea preferințelor utilizatorilor, felurile de mâncare favorite, dar și a cocktail-urilor. Structura bazei de date se poate observa în imaginea de mai jos.
-![structura baza de date](https://user-images.githubusercontent.com/83305311/117572755-f97dd880-b0dc-11eb-902d-35857f0fd4b2.JPG)
+2. Firebase Firestore Database
+Serviciul cloud **Firebase Firestore Database** permite stocarea preferințelor utilizatorilor. Structura bazei de date se poate observa în imaginea de mai jos.
+![db structure](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/DB Structure.png)
 
 ## REST API
 
-Ambele api-uri sunt free to use și nu este nevoie de o cheie de autentificare. De asemenea, pentru apelarea acestora s-a folosit librăria Axios. 
+Am ales pentru funcționalitatea aplicației două API-uri free to use pentru care nu este necesară o cheie de autentificare, iar pentru apelarea acestora am apelat la librăria Axios. 
 
-1. TheMealDB
-Acest API se poate regăsi aici: https://www.themealdb.com/api.php
+1. TheCocktailDB
+API-ul **TheCocktailDb** se poate accesa prin link-ul: https://www.thecocktaildb.com/api.php.
 
-TheMealDB este folosit pentru căutarea rețetelor de mâncare. Acesta oferă date precum imagine și un link către YouTube cu instrucțiunile de reproducere a acesteia.
+TheCocktailDb este folosit pentru căutarea băuturilor. Acesta oferă informații despre băutura selectată, precum imagine și instrucțiuni de preparare.
 
-![meal image](https://user-images.githubusercontent.com/83305311/117572976-2c749c00-b0de-11eb-88e7-feb85321d2ea.JPG) ![meal youtube link](https://user-images.githubusercontent.com/83305311/117573391-38615d80-b0e0-11eb-80c6-eed307ad932e.JPG)
+![drink imagine](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Drink Image.png) 
 
-2. TheCocktailDB
-Acest api se poate regăsi aici: https://www.thecocktaildb.com/api.php.
+2. TheMealDB
+API-ul **TheMealDB** se poate accesa prin link-ul: https://www.themealdb.com/api.php
 
-TheCocktailDb este folosit pentru căutarea băuturilor răcoritoare. La fel ca TheMealDB, acesta oferă informații similare, precum imagine și instrucțiuni de utilizare, dar nu și link de YouTube.
+**TheMealDB** este folosit pentru căutarea rețetelor de mâncare. Acesta oferă informații despre felul de mâncare selectat, precum imagine si link către un video YouTube cu instrucțiunile de reproducere.
 
-![drink imagine](https://user-images.githubusercontent.com/83305311/117572958-0c44dd00-b0de-11eb-85c7-7569448045eb.JPG) 
+![meal image](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Image.png) ![meal youtube video](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Youtube Video.png)
+
 
 ## Flux de date
-Utilizatorul va interacționa prima dată cu interfața de autentificare, unde acesta va trebui să se conecteze cu un cont Google. Id-ul acestuia va fi disponibil tuturor componentelor din aplicație, deoarece se va folosi pentru stocarea preferințelor. Odată autentificat, acesta va observa pagina de cocktails. 
-![pagina de start](https://user-images.githubusercontent.com/83305311/117572791-3053ee80-b0dd-11eb-9ab2-7e20e3fe70a4.JPG)
 
-În cadrul acestei pagini, utilizatorul poate căuta și alege să adauge la favorite o băutură după un cuvânt cheie.
-![plus](https://user-images.githubusercontent.com/83305311/117573084-bde40e00-b0de-11eb-97f5-d417c1f38a50.JPG)
+Utilizatorul va interacționa prima dată cu interfața de autentificare, unde acesta va trebui să se conecteze cu un cont Google. Id-ul acestuia va fi disponibil tuturor componentelor din aplicație, deoarece se va folosi pentru stocarea preferințelor. 
+
+Pentru autentificare se folosește urmatorul apel:
+```
+const authenticateUser = () => {
+        auth.signInWithPopup(googleProvider).then(res => {
+            const userId = res.additionalUserInfo.profile.id;
+            if (res.additionalUserInfo.isNewUser) {
+                createMealsAndCocktailsArray(userId);
+            }
+            setCurrentUserId(userId);
+        }).catch(err => {
+            alert('Error while logging in');
+        });
+    }
+```
+Dacă utilizatorul este pentru prima oară autentificat, se vor crea vectorii pentru felul de mâncare și băuturi în documentul propriu.
+
+Odată autentificat, acesta va observa pagina personala **Kitchen Guide**. 
+
+![start page](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Start Page.png)
+
+Inițial utilizatorul nu va vedea niciun produs pe această pagină, iar pentru a adaugă un fel de mâncare sau o băutură acesta poate accesa interfața de feluri de mâncare sau interfața cocktail-uri folosind meniul lateral al aplicației.
+
+![side menu](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Side Menu.png)
+
+1. **Cocktails** - Interfața de băuturi
+
+În cadrul acestei pagini, utilizatorul poate căuta și alege să adauge la pagina personală o băutură pe care dorește să o prepare după un cuvânt cheie.
+
+![add](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Add.png)
 
 Datele sunt preluate din API-ul TheCocktailDb, iar un apel de tip `GET` către acesta va arăta in felul urmator: 
 ```
@@ -54,19 +82,19 @@ Datele sunt preluate din API-ul TheCocktailDb, iar un apel de tip `GET` către a
           })
     }
 ```
-Unde 's' este un parametru ce reprezintă cuvântul cheie. Datele vor fi stocate într-un vector și afișate prin componenta `CocktailCard`.
+Textul va fi preluat din input și asignat către parametrul `s`. Datele vor fi stocate într-un vector și afișate prin componenta `CocktailCard`.
 
-Un exemplu de response poate fi vizualizat aici: https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
-![drink response](https://user-images.githubusercontent.com/83305311/117572848-8163e280-b0dd-11eb-828e-94577d8e2477.JPG)
+Un exemplu de response poate fi vizualizat cu ajutorul link-ului: https://www.thecocktaildb.com/api/json/v1/1/search.php?s=Rose
 
-Utilizatorul poate accesa interfața de feluri de mâncare, deschizând meniul lateral. 
+![drink response](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Drink Response.png)
 
-![meniu lateral](https://user-images.githubusercontent.com/83305311/117573114-e0762700-b0de-11eb-85a1-2bafcd58a955.JPG)
+2. **Meals** - Interfața de feluri de Mâncare
 
-Similar cu interfața de cocktails, felurile de mâncare vor fi căutate după un cuvânt cheie. 
-![meal cuv cheie](https://user-images.githubusercontent.com/83305311/117573142-08658a80-b0df-11eb-9f45-ed62f32e7f6b.JPG)
+Similar cu interfața de cocktails, felurile de mâncare dorite vor fi căutate după un cuvânt cheie. 
 
-Metoda HTTP `GET` în acest caz arată în felul următor: 
+![meal key word](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Key Word.png)
+
+Datele sunt preluate din API-ul TheMealDB, iar un apel de tip `GET` către acesta va arăta in felul urmator: 
 ```
    const searchMeals = () =>{
         axios.get('https://www.themealdb.com/api/json/v1/1/search.php', {
@@ -78,13 +106,12 @@ Metoda HTTP `GET` în acest caz arată în felul următor:
           })
     }
 ```
-Textul va fi preluat din input și 'pasat' către parametrul `s`.Datele vor fi stocate într-un vector și afișate prin componenta `MealCard`.
+Textul va fi preluat din input și asignat către parametrul `s`. Datele vor fi stocate într-un vector și afișate prin componenta `MealCard`.
 
-Ulterior, pentru a deschide pagina cu produsele salvate, se va accesa opțiunea 'My Bistro' din meniul lateral. 
-![meniu lateral 2](https://user-images.githubusercontent.com/83305311/117573228-66926d80-b0df-11eb-8286-af8775f5663a.JPG)
+Ulterior, pentru a reveni la pagina personală cu rețetele salvate, se va accesa **Kitchen Guide** din meniul lateral. 
 
-Odată deschisă interfața, se vor citi din baza de date toate felurile de mâncare și băuturile stocate. 
-![my bistro](https://user-images.githubusercontent.com/83305311/117573259-8fb2fe00-b0df-11eb-8ddf-9ec7377da772.JPG)
+Odată deschisă interfața, daca există produse salvate, acestea vor fi citite din baza de date Firebase Firestore și vor fi afișate. 
+![kitchen guide](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Kitchen Guide.png)
 
 Aici Firebase vine în ajutor cu propriile metode de apel. Citirea pentru felurile de mâncare se va face în felul următor: 
 ```
@@ -98,6 +125,7 @@ Aici Firebase vine în ajutor cu propriile metode de apel. Citirea pentru feluri
         })
     }
 ```
+
 Pentru eficiența codului, se vor refolosi componentele `MealCard` și `CocktailCard`.
 ```
  const removeMealFromFav = (meal) => {
@@ -112,53 +140,52 @@ Pentru eficiența codului, se vor refolosi componentele `MealCard` și `Cocktail
         });
     }
 ```
-De asemnea, din această interfață utilizatorul poate șterge obiectele din favorite. 
 
-![trash](https://user-images.githubusercontent.com/83305311/117573247-7dd15b00-b0df-11eb-899b-bce202bae963.JPG)
+De asemnea, din această interfață utilizatorul poate șterge rețete salvate din pagina personală. 
 
-De asemenea, pentru autentificare se folosește urmatorul apel:
-```
-const authenticateUser = () => {
-        auth.signInWithPopup(googleProvider).then(res => {
-            const userId = res.additionalUserInfo.profile.id;
-            if (res.additionalUserInfo.isNewUser) {
-                createMealsAndCocktailsArray(userId);
-            }
-            setCurrentUserId(userId);
-        }).catch(err => {
-            alert('Error while logging in');
-        });
-    }
-```
-Daca utilizatorul este pentru prima oară autentificat, se vor crea vectorii pentru felul de mâncare și băuturi în documentul propriu.
+![trash](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Trash.png)
 
-Pentru a ieși din aplicație, utilizatorul va apăsa butonul de LOGOUT din partea dreapta-sus a aplicației. De asemenea, data viitoare cand utilizatorul va accesa aplicația cu același cont, va outea vedea alegerile făcute înainte, altfel, pagina My Bistro va fi goală.
-![logout](https://user-images.githubusercontent.com/83305311/117573320-e15b8880-b0df-11eb-93bf-2dd0587fddab.JPG)
+Ieșirea din aplicație se face prin apăsarea butonul de LOGOUT din partea dreapta-sus a aplicației. 
+
+![logout](https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Logout.png)
+
+La momentul următoarei logări cu același cont Google, utilizatorul va vedea pe pagina personală rețetele salvate la logările anterioare.
 
 ## Publicarea
-Aplicatia a fost publicata folosind Heroku CLI și poate fi accesată aici: https://my-own-bistro.herokuapp.com/
+
+Aplicația a fost publicată folosind Heroku CLI și poate fi accesată prin link-ul: https://kitchen-guide.herokuapp.com/
 
 ## Rularea locala
+
 Pentru a rula proiectul local, se vor folosi comenzile:
 ```
 git clone /insert repository/
-cd my-own-bistro
+cd Proiect-Cloud-Computing
 npm install
 npm start
 ```
-Pentru siguranță, proiectul folosește un fișier local .env.local unde vor fi stocate cheile către firebase. Fără acest fișier, proiectul nu va funcționa corespunzător.
+Pentru siguranță, proiectul folosește un fișier local .env.local unde vor fi stocate cheile către Firebase. Fără acest fișier, proiectul nu va funcționa corespunzător.
 
 ## Referințe
 1. https://firebase.google.com/docs/auth
 2. https://firebase.google.com/docs/firestore
-3. https://www.themealdb.com/api.php
-4. https://www.thecocktaildb.com/api.php
+3. https://www.thecocktaildb.com/api.php 
+4. https://www.themealdb.com/api.php
 5. https://www.npmjs.com/package/axios
 6. https://material-ui.com/
 
 ## Alte capturi de ecran
-https://github.com/GrosuPaula/my-own-bistro/blob/main/my-own-bistro/Screenshot1.png
-https://github.com/GrosuPaula/my-own-bistro/blob/main/my-own-bistro/Screenshot2.png
-https://github.com/GrosuPaula/my-own-bistro/blob/main/my-own-bistro/Screenshot3.png
-https://github.com/GrosuPaula/my-own-bistro/blob/main/my-own-bistro/Screenshot4.png
-https://github.com/GrosuPaula/my-own-bistro/blob/main/my-own-bistro/Screenshot5.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Authentication.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/DB Structure.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Drink Image.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Image.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Youtube Video.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Start Page.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Side Menu.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Add.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Drink Response.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Meal Key Word.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Kitchen Guide.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Trash.png
+https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Logout.png
+
