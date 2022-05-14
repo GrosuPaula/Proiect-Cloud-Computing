@@ -1,9 +1,13 @@
 # Kitchen Guide
+# Grosu Paula-Maria
+# Grupa 1118
+# Link Youtube - https://www.youtube.com/watch?v=uAIUxR2yta4
+# Link Publicare - https://kitchen-guide.herokuapp.com/
 
 ## Introducere
 Aplicația **Kitchen Guide** este o aplicație de tip Single Page Application dezvoltată cu ajutorul librăriei React și librăriei Material UI, pentru o interfață user friendly.
 
-## Descriere
+## Descriere problemă
 Aplicația **Kitchen Guide** se adresează utilizatorilor care doresc să ajungă rapid la un ghid step by step pentru prepararea unui fel de mâncare sau a unei băuturi. Aplicația a fost gândită pentru a fi ușor de utilizat de catre end-user, astfel pentru autentificare este necesar doar un cont de Google, iar căutarea rețetelor se realizează pe baza unui cuvânt cheie. 
  
 ## Servicii Cloud
@@ -174,7 +178,7 @@ Pentru siguranță, proiectul folosește un fișier local .env.local unde vor fi
 5. https://www.npmjs.com/package/axios
 6. https://material-ui.com/
 
-## Alte capturi de ecran
+## Capturi de ecran
 https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Authentication.png
 https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/DB_Structure.png
 https://github.com/GrosuPaula/Proiect-Cloud-Computing/blob/master/Cocktail_Image.png
