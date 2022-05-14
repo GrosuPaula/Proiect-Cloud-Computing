@@ -1,8 +1,9 @@
 # Kitchen Guide
-# Grosu Paula-Maria
-# Grupa 1118
-# Link Youtube - https://www.youtube.com/watch?v=uAIUxR2yta4
-# Link Publicare - https://kitchen-guide.herokuapp.com/
+
+## Grosu Paula-Maria
+## Grupa 1118
+## Link Youtube - https://www.youtube.com/watch?v=uAIUxR2yta4
+## Link Publicare - https://kitchen-guide.herokuapp.com/
 
 ## Introducere
 Aplicația **Kitchen Guide** este o aplicație de tip Single Page Application dezvoltată cu ajutorul librăriei React și librăriei Material UI, pentru o interfață user friendly.
