@@ -1,6 +1,7 @@
 # Kitchen Guide
 
 ## Grosu Paula-Maria - Grupa 1118
+## Link Git - https://github.com/GrosuPaula/Proiect-Cloud-Computing
 ## Link Youtube - https://www.youtube.com/watch?v=uAIUxR2yta4
 ## Link Publicare - https://kitchen-guide.herokuapp.com/
 
