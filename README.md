@@ -155,15 +155,11 @@ Ieșirea din aplicație se face prin apăsarea butonul de LOGOUT din partea drea
 
 La momentul următoarei logări cu același cont Google, utilizatorul va vedea pe pagina personală rețetele salvate la logările anterioare.
 
-## Publicarea
-
-Aplicația a fost publicată folosind Heroku CLI și poate fi accesată prin link-ul: https://kitchen-guide.herokuapp.com/
-
 ## Rularea locala
 
 Pentru a rula proiectul local, se vor folosi comenzile:
 ```
-git clone /insert repository/
+git clone https://github.com/GrosuPaula/Proiect-Cloud-Computing.git
 cd Proiect-Cloud-Computing
 npm install
 npm start
